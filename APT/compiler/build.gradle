@@ -1,0 +1,18 @@
+apply plugin: 'java'
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+
+    implementation project(path: ':animation')
+    annotationProcessor 'com.google.auto.service:auto-service:1.0'
+    compileOnly 'com.google.auto.service:auto-service-annotations:1.0'
+
+    implementation 'com.squareup:javapoet:1.12.1'
+
+
+}

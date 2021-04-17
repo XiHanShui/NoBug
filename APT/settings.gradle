@@ -1,2 +1,4 @@
+include ':compiler'
+include ':animation'
 include ':app'
 rootProject.name = "APT"
