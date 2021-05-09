@@ -110,12 +110,31 @@ void AudioChannel::decode() {
 
 void AudioChannel::_play() {
 
-    SLresult  lresult;
-    lresult=slCreateEngine(&engineObject,0, nullptr,0, nullptr, nullptr);
-    if(SL_RESULT_SUCCESS!=lresult){
+    SLresult lresult;
+    lresult = slCreateEngine(&engineObject, 0, nullptr, 0, nullptr, nullptr);
+    if (SL_RESULT_SUCCESS != lresult) {
         return;
     }
-    lresult=(*engineObject)->Realize(engineObject,SL_BOOLEAN_FALSE);
+    lresult = (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
+    if (lresult != SL_RESULT_SUCCESS) {
+        return;
+    }
+    lresult = (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineInterface);
+    if (lresult != SL_RESULT_SUCCESS) {
+        return;
+    }
+    lresult = (*engineInterface)->CreateOutputMix(engineInterface, &outputMixObject, 0, 0, 0);
+    if (SL_RESULT_SUCCESS != lresult) {
+        return;
+    }
+
+    lresult = (*outputMixObject)->Realize(outputMixObject, SL_BOOLEAN_FALSE);
+    if (SL_RESULT_SUCCESS != lresult) {
+        return;
+    }
+
+    SLDataLocator_AndroidBufferQueue androidBufferQueue = {SL_DATALOCATOR_ANDROIDBUFFERQUEUE, 2};
+    SLDataFormat_PCM  pcm={SL_DATAFORMAT_PCM,2,SL_SAMPLINGRATE_44_1,SL_PCMSAMPLEFORMAT_FIXED_16,SL_PCM};
 
 
 }
