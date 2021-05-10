@@ -3,7 +3,16 @@
 #include "JavaCallHelper.h"
 #include "SafeQueue.h"
 #include "Log.h"
+#include "BaseChannel.h"
+#include "JPlayer.h"
+#include "AudioChannel.h"
+#include "VideoChannel.h"
 
+extern "C"
+JNIEXPORT jlong JNICALL
+Java_com_socct_ffmpeg_JAudioPlayer_nativeInit(JNIEnv *env, jobject thiz) {
+
+}
 
 extern "C"
 JNIEXPORT void JNICALL

@@ -13,6 +13,7 @@ add_library(
         ffmpeg
         SHARED
         ${SOURCE}
+        AudioChannel.cpp
 )
 
 
