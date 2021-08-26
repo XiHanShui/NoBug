@@ -5,8 +5,16 @@
 #ifndef FFMPEGDEMO_VIDEOCHANNEL_H
 #define FFMPEGDEMO_VIDEOCHANNEL_H
 
+#include <android/native_window.h>
+#include "BaseChannel.h"
+#include "AudioChannel.h"
 
-class VideoChannel {
+class VideoChannel : public BaseChannel {
+
+    friend void videoPlay_t(void *args);
+
+public:
+
 
 };
 
