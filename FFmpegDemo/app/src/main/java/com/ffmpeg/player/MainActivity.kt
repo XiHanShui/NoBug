@@ -1,9 +1,9 @@
-package com.wj.ffmpegdemo
+package com.ffmpeg.player
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import com.wj.ffmpegdemo.databinding.ActivityMainBinding
+import com.ffmpeg.player.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

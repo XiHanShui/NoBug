@@ -1,4 +1,4 @@
-package com.wj.ffmpegdemo
+package com.ffmpeg.player
 
 import org.junit.Test
 
