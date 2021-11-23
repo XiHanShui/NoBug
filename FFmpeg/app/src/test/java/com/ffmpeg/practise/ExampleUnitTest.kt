@@ -1,4 +1,4 @@
-package com.socct.ffmpeg
+package com.ffmpeg.practise
 
 import org.junit.Test
 
