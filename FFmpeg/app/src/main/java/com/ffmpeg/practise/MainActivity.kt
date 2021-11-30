@@ -14,21 +14,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Example of a call to a native method
-        binding.sampleText.text = stringFromJNI()
+        binding.sampleText.text = FFPlayer.getFFmpegVersion()
     }
 
-    /**
-     * A native method that is implemented by the 'practise' native library,
-     * which is packaged with this application.
-     */
-    external fun stringFromJNI(): String
 
-    companion object {
-        // Used to load the 'practise' library on application startup.
-        init {
-            System.loadLibrary("practise")
-        }
-    }
 }
