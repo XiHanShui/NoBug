@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <string>
 #include <pthread.h>
+#include "util/LogUtil.h"
 
 extern "C" {
 #include <libavutil/macros.h>
@@ -10,6 +11,7 @@ extern "C" {
 #include "libswscale/version.h"
 #include "libavfilter/version.h"
 }
+using namespace std;
 
 
 
@@ -104,4 +106,25 @@ JNIEXPORT void JNICALL
 Java_com_ffmpeg_practise_FFPlayer_nativeSetTouchLoc(JNIEnv *env, jclass clazz, jint render_type,
                                                     jfloat touch_x, jfloat touch_y) {
     // TODO: implement nativeSetTouchLoc()
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_ffmpeg_practise_FFPlayer_00024Companion_test(JNIEnv *env, jobject thiz, jboolean is_dev,
+                                                      jboolean is_oversea) {
+
+    string key;
+    if (is_oversea) {
+        if (is_dev){
+
+        } else{
+
+        }
+
+    } else{
+        if (is_dev){
+
+        } else{
+
+        }
+    }
 }

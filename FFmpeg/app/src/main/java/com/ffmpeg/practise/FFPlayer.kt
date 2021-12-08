@@ -99,6 +99,8 @@ class FFPlayer {
        @JvmStatic
        external  fun nativeSetTouchLoc(renderType: Int,touchX:Float,touchY:Float)
 
+       external  fun test(isDev:Boolean,isOversea:Boolean)
+
 
         init {
             System.loadLibrary("practise")

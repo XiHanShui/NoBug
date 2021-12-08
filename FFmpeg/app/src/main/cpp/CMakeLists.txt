@@ -6,10 +6,18 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 set(jniLibs ${CMAKE_SOURCE_DIR}/../nativeLibs)
 
 file(GLOB src_files *.cpp)
+file(GLOB src_player *.cpp)
+file(GLOB src_decoder *.cpp)
+file(GLOB src_render *.cpp)
+file(GLOB src_render *.cpp)
 
 
 include_directories(
         include
+        util
+        player
+        player/decoder
+        player/render
 )
 link_directories(${jniLibs}/${ANDROID_ABI})
 
