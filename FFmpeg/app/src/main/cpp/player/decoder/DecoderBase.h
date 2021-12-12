@@ -10,7 +10,7 @@ extern "C" {
 
 #include <thread>
 #include "Decoder.h"
-#include "util/LogUtil.h"
+#include "LogUtil.h"
 
 
 #define  MAX_PATH 2048
@@ -43,7 +43,7 @@ private:
     void decodingLoop();
 
     /*更新显示时间戳*/
-    void updateTimeStamp()
+    void updateTimeStamp();
 
     /*音视频同步*/
     long AVSync();
@@ -78,7 +78,7 @@ private:
     int m_StreamIndex = -1;
     /*锁和条件变量*/
     mutex m_Mutex;
-    condition_variable = m_Cond;
+    condition_variable  m_Cond;
     thread *m_Thread = nullptr;
     /*seek position*/
     volatile float m_SeekPosition = 0;
@@ -115,13 +115,13 @@ public:
     virtual  ~DecoderBase() {};
 
     /*开始播放*/
-    virtual void start() {};
+    virtual void start() ;
 
     /*暂停播放*/
-    virtual void pause() {};
+    virtual void pause() ;
 
     /*停止播放*/
-    virtual void stop() {};
+    virtual void stop() ;
 
     /*获取时长*/
     virtual float getDuration() {
@@ -138,7 +138,7 @@ public:
     virtual void clearCache() {};
 
     /*设置消息回调*/
-    virtual void setMessageCallback(void *context, MessageCallback callback) {
+    virtual void setMessageCallback(void *context, AVSyncCallback callback) {
         this->m_MsgContext = context;
         this->m_AvSyncCallback = callback;
     }

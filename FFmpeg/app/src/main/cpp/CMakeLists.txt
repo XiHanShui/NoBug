@@ -6,10 +6,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 set(jniLibs ${CMAKE_SOURCE_DIR}/../nativeLibs)
 
 file(GLOB src_files *.cpp)
-file(GLOB src_player *.cpp)
-file(GLOB src_decoder *.cpp)
-file(GLOB src_render *.cpp)
-file(GLOB src_render *.cpp)
+file(GLOB src_player player/*.cpp)
+file(GLOB src_decoder player/decoder/*.cpp)
+file(GLOB src_render player/render/*.cpp)
+
 
 
 include_directories(
@@ -24,7 +24,11 @@ link_directories(${jniLibs}/${ANDROID_ABI})
 add_library(
         practise
         SHARED
-        ${src_files})
+        ${src_files}
+        ${src_player}
+        ${src_decoder}
+        ${src_render}
+)
 set(third-party-libs
         avformat
         avcodec
