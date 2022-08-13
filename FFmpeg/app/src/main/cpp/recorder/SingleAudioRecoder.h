@@ -6,7 +6,7 @@
 #define FFMPEGDEMO_SINGLEAUDIORECODER_H
 
 
-class SIngleAudioRecoder {
+class SingleAudioRecoder {
 
 };
 

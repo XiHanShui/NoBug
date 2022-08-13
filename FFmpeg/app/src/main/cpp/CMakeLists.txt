@@ -5,11 +5,20 @@ project("practise")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 set(jniLibs ${CMAKE_SOURCE_DIR}/../nativeLibs)
 
-file(GLOB src_files *.cpp)
-file(GLOB src_player player/*.cpp)
-file(GLOB src_decoder player/decoder/*.cpp)
-file(GLOB src_render player/render/*.cpp)
-
+file(GLOB src-files
+        ${CMAKE_SOURCE_DIR}/*.cpp
+        ${CMAKE_SOURCE_DIR}/util/*.cpp
+        ${CMAKE_SOURCE_DIR}/common/*.cpp
+        ${CMAKE_SOURCE_DIR}/player/*.cpp
+        ${CMAKE_SOURCE_DIR}/player/decoder/*.cpp
+        ${CMAKE_SOURCE_DIR}/player/render/video/*.cpp
+        ${CMAKE_SOURCE_DIR}/player/render/audio/*.cpp
+        ${CMAKE_SOURCE_DIR}/recorder/SingleVideoRecorder.cpp
+        ${CMAKE_SOURCE_DIR}/recorder/SingleAudioRecorder.cpp
+        ${CMAKE_SOURCE_DIR}/recorder/MediaRecorderContext.cpp
+        ${CMAKE_SOURCE_DIR}/recorder/GLCameraRender.cpp
+        ${CMAKE_SOURCE_DIR}/recorder/MediaRecorder.cpp
+        )
 
 include_directories(
         include
@@ -29,10 +38,7 @@ link_directories(${jniLibs}/${ANDROID_ABI})
 add_library(
         practise
         SHARED
-        ${src_files}
-        ${src_player}
-        ${src_decoder}
-        ${src_render}
+        ${src-files}
 )
 set(third-party-libs
         avformat

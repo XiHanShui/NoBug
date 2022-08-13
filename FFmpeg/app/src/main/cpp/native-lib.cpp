@@ -5,6 +5,23 @@
 #include "SyncClock.h"
 #include "ThreadSafeQueue.h"
 #include "AVPacketQueue.h"
+#include "MediaPlayer.h"
+#include "MediaRecoder.h"
+#include "PlayerWrapper.h"
+#include "HWCodecPlayer.h"
+#include "FFMediaPlayer.h"
+#include "AudioDecoder.h"
+#include "Decoder.h"
+#include "DecoderBase.h"
+#include "VideoDecoder.h"
+#include "AudioGLRender.h"
+#include "AudioRender.h"
+#include "OpenSLRender.h"
+#include "BaseGLRender.h"
+#include "VRGLRender.h"
+#include "VideoGLRender.h"
+#include "NativeRender.h"
+#include "VideoRender.h"
 extern "C" {
 #include <libavutil/macros.h>
 #include <libavutil/version.h>

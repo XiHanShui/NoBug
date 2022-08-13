@@ -4,7 +4,7 @@
 
 #ifndef FFMPEGDEMO_AVPACKETQUEUE_H
 #define FFMPEGDEMO_AVPACKETQUEUE_H
-
+#include <thread>
 extern "C" {
 #include <libavcodec/avcodec.h>
 };
@@ -40,6 +40,8 @@ public:
 
     // 获取数据包
     void getPacket(AVPacket *pkt);
+
+    int  getPacket(AVPacket*pkt,int block);
 
     int getPacketSize();
 

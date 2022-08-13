@@ -5,4 +5,7 @@
 #ifndef FFMPEGDEMO_MEDIAPLAYER_H
 #define FFMPEGDEMO_MEDIAPLAYER_H
 
+#include <jni.h>
+
+
 #endif //FFMPEGDEMO_MEDIAPLAYER_H
