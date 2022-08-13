@@ -1,0 +1,8 @@
+//
+// Created by WJ on 2022/8/10.
+//
+
+#ifndef FFMPEGDEMO_BASEGLRENDER_H
+#define FFMPEGDEMO_BASEGLRENDER_H
+
+#endif //FFMPEGDEMO_BASEGLRENDER_H

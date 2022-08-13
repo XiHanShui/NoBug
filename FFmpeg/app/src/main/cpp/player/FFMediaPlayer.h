@@ -1,8 +1,14 @@
-#ifndef LEARNFFMPEG_FFMEDIAPLAYER_H
-#define LEARNFFMPEG_FFMEDIAPLAYER_H
+//
+// Created by WJ on 2022/8/10.
+//
 
-#include <jni.h>
+#ifndef FFMPEGDEMO_FFMEDIAPLAYER_H
+#define FFMPEGDEMO_FFMEDIAPLAYER_H
 
 
+class FFMediaPlayer {
 
-#endif //LEARNFFMPEG_FFMEDIAPLAYER_H
+};
+
+
+#endif //FFMPEGDEMO_FFMEDIAPLAYER_H

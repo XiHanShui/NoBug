@@ -1,0 +1,14 @@
+//
+// Created by WJ on 2022/8/10.
+//
+
+#ifndef FFMPEGDEMO_SINGLEVIDEORECODER_H
+#define FFMPEGDEMO_SINGLEVIDEORECODER_H
+
+
+class SingleVideoRecoder {
+
+};
+
+
+#endif //FFMPEGDEMO_SINGLEVIDEORECODER_H

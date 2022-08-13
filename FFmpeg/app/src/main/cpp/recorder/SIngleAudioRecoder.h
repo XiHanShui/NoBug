@@ -1,0 +1,14 @@
+//
+// Created by WJ on 2022/8/10.
+//
+
+#ifndef FFMPEGDEMO_SINGLEAUDIORECODER_H
+#define FFMPEGDEMO_SINGLEAUDIORECODER_H
+
+
+class SIngleAudioRecoder {
+
+};
+
+
+#endif //FFMPEGDEMO_SINGLEAUDIORECODER_H

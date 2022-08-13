@@ -1,0 +1,8 @@
+//
+// Created by WJ on 2022/8/10.
+//
+
+#ifndef FFMPEGDEMO_AUDIORENDER_H
+#define FFMPEGDEMO_AUDIORENDER_H
+
+#endif //FFMPEGDEMO_AUDIORENDER_H

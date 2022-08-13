@@ -11,14 +11,19 @@ file(GLOB src_decoder player/decoder/*.cpp)
 file(GLOB src_render player/render/*.cpp)
 
 
-
 include_directories(
         include
-        util
-        player
-        player/decoder
-        player/render
-)
+        glm
+        common
+        ${CMAKE_SOURCE_DIR}/recorder
+        ${CMAKE_SOURCE_DIR}/util
+        ${CMAKE_SOURCE_DIR}/player
+        ${CMAKE_SOURCE_DIR}/player/decoder
+        ${CMAKE_SOURCE_DIR}/player/render
+        ${CMAKE_SOURCE_DIR}/player/render/audio
+        ${CMAKE_SOURCE_DIR}/player/render/video)
+
+
 link_directories(${jniLibs}/${ANDROID_ABI})
 
 add_library(

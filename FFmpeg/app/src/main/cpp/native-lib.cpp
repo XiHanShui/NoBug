@@ -2,7 +2,9 @@
 #include <string>
 #include <pthread.h>
 #include "util/LogUtil.h"
-
+#include "SyncClock.h"
+#include "ThreadSafeQueue.h"
+#include "AVPacketQueue.h"
 extern "C" {
 #include <libavutil/macros.h>
 #include <libavutil/version.h>
