@@ -6,23 +6,37 @@
 #include "LogUtil.h"
 
 void DecoderBase::start() {
-
+    if (m_thread == nullptr) {
+        startDecodingThread();
+    } else {
+        unique_lock<mutex> lk(m_Mutex);
+        m_DecoderState = STATE_DECODING;
+        m_Cond.notify_all();
+    }
 }
 
 void DecoderBase::pause() {
+    unique_lock<mutex> lk(m_Mutex);
+    m_DecoderState = STATE_PAUSE;
 
 }
 
 void DecoderBase::stop() {
-
+    unique_lock<mutex> lk(m_Mutex);
+    m_DecoderState = STATE_STOP;
+    m_Cond.notify_all();
 }
 
 void DecoderBase::seekToPosition(float position) {
-
+    unique_lock<mutex> lk(m_Mutex);
+    m_SeekPosition = position;
+    m_DecoderState = STATE_DECODING;
+    m_Cond.notify_all();
 }
 
 float DecoderBase::getCurrentPosition() {
-    return 0;
+    // 单位 ms
+    return m_CurTimeStamp;
 }
 
 int DecoderBase::init(const char *url, AVMediaType mediaType) {
@@ -156,11 +170,39 @@ void DecoderBase::decodingLoop() {
 }
 
 void DecoderBase::updateTimeStamp() {
-
+    unique_lock<mutex> lk(m_Mutex);
+    if (m_AVFrame->pkt_dts != AV_NOPTS_VALUE) {
+        m_CurTimeStamp = m_AVFrame->pkt_dts;
+    } else if (m_AVFrame->pts != AV_NOPTS_VALUE) {
+        m_CurTimeStamp = m_AVFrame->pts;
+    } else {
+        m_CurTimeStamp = 0;
+    }
+    m_CurTimeStamp = (int64_t) (
+            (m_CurTimeStamp * av_q2d(m_AVFormatContext->streams[m_StreamIndex]->time_base)) * 1000);
+    if (m_SeekPosition > 0 && m_SeekSuccess) {
+        m_StartTimeStamp = GetSysCurrentTime() - m_CurTimeStamp;
+        m_SeekPosition = 0;
+        m_SeekSuccess = false;
+    }
 }
 
 long DecoderBase::avSync() {
-    return 0;
+    long curSysTime = GetSysCurrentTime();
+    // 基于系统时钟计算从开始播放流逝的时间
+    long elapsedTime = curSysTime - m_StartTimeStamp;
+    if (m_MsgContext && m_MsgCallback && m_MediaType == AVMEDIA_TYPE_AUDIO) {
+        m_MsgCallback(m_MsgContext, MSG_DECODER_TIME, m_CurTimeStamp * 1.0F / 1000);
+    }
+    long delay = 0;
+    if (m_CurTimeStamp > elapsedTime) {
+        auto sleepTime = static_cast<unsigned int>(m_CurTimeStamp - elapsedTime);//ms
+        // 限制休眠时间 不能太长
+        sleepTime = sleepTime > DELAY_THRESHOLD ? DELAY_THRESHOLD : sleepTime;
+        av_usleep(sleepTime * 1000);
+    }
+    delay = elapsedTime - m_CurTimeStamp;
+    return delay;
 }
 
 int DecoderBase::decodeOnePacket() {
@@ -187,26 +229,24 @@ int DecoderBase::decodeOnePacket() {
                 result = -1;
                 goto __EXIT;
             }
-            int frameCount=0;
-            while (avcodec_receive_frame(m_AVCodecContext,m_AVFrame)==0){
+            int frameCount = 0;
+            while (avcodec_receive_frame(m_AVCodecContext, m_AVFrame) == 0) {
                 updateTimeStamp();
                 avSync();
                 onFrameAvailable(m_AVFrame);
                 frameCount++;
             }
-            if (frameCount>0){
-                result=0;
+            if (frameCount > 0) {
+                result = 0;
                 goto __EXIT;
             }
         }
         av_packet_unref(m_AVPacket);
-        result= av_read_frame(m_AVFormatContext,m_AVPacket);
+        result = av_read_frame(m_AVFormatContext, m_AVPacket);
     }
 
-
     __EXIT:
-
-
+    av_packet_unref(m_AVPacket);
     return result;
 }
 
