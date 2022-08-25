@@ -10,8 +10,8 @@ extern "C"{
 #include <libavutil/opt.h>
 #include <libavutil/audio_fifo.h>
 };
-#include "render/audio/AudioRender.h"
-#include "SingleAudioRecoder.h"
+#include <render/audio/AudioRender.h>
+#include <SingleAudioRecoder.h>
 #include "Decoder.h"
 #include "DecoderBase.h"
 
@@ -27,7 +27,26 @@ static  const int AUDIO_DST_BIT_RATE=64000;
 static  const int ACC_NB_SAMPLES=1024;
 
 
-class AudioDecoder {
+class AudioDecoder :public  DecoderBase{
+public:
+    AudioDecoder(char  *url){
+        init(url,AVMEDIA_TYPE_AUDIO);
+    }
+    virtual ~AudioDecoder(){
+        unInit();
+    }
+
+    void  setAudioRender(AudioDecoder *audioDecoder){
+
+    }
+
+private:
+    virtual  void onDecoderReady();
+    virtual  void onDecoderDone();
+    virtual  void  onFrameAvailable(AVFrame *frame);
+    virtual  void  clearCache();
+    const AVSampleFormat DST_SAMPLE_FORMAT=AV_SAMPLE_FMT_S16;
+//    AudioRender *m_AudioDecoder=nullptr;
 
 };
 

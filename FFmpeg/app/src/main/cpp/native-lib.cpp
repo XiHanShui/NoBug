@@ -22,6 +22,7 @@
 #include "VideoGLRender.h"
 #include "NativeRender.h"
 #include "VideoRender.h"
+#include "ImageDef.h"
 extern "C" {
 #include <libavutil/macros.h>
 #include <libavutil/version.h>
