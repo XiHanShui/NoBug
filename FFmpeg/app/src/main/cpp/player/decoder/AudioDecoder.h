@@ -46,7 +46,8 @@ private:
     virtual  void  onFrameAvailable(AVFrame *frame);
     virtual  void  clearCache();
     const AVSampleFormat DST_SAMPLE_FORMAT=AV_SAMPLE_FMT_S16;
-//    AudioRender *m_AudioDecoder=nullptr;
+
+    AudioRender *m_AudioDecoder=nullptr;
 
 };
 
