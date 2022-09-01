@@ -69,7 +69,7 @@ void AVPacketQueue::start() {
     m_CondVar.notify_all();
 }
 
-void AVPacketQueue::getPacket(AVPacket *pkt) {
+int AVPacketQueue::getPacket(AVPacket *pkt) {
     return getPacket(pkt, 1);
 }
 

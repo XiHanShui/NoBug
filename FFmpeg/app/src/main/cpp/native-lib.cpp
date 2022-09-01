@@ -23,6 +23,8 @@
 #include "NativeRender.h"
 #include "VideoRender.h"
 #include "ImageDef.h"
+#include "GLUtils.h"
+#include "ASanTestCase.h"
 extern "C" {
 #include <libavutil/macros.h>
 #include <libavutil/version.h>

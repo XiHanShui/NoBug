@@ -39,7 +39,7 @@ public:
     void start();
 
     // 获取数据包
-    void getPacket(AVPacket *pkt);
+    int getPacket(AVPacket *pkt);
 
     int  getPacket(AVPacket*pkt,int block);
 
